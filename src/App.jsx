@@ -1,9 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { HeroCalculator, Galery, Contact, Calculator } from './sections/index.js';
+import { useState, useEffect} from 'react';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import { HeroCalculator, Galery, Contact, Calculator, Footer, ThankYouPage, GaleryFullPage } from './sections/index.js';
 import Nav from './components/Nav';
 import { crochetBackground } from './assets';
 import 'swiper/swiper-bundle.css';
+import GaleryCardPage from './sections/GaleryCardPage.jsx';
+
 
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false); // State to track if page is scrolled
@@ -66,10 +68,16 @@ const App = () => {
                 <section id="contact" className="w-full h-screen">
                   <Contact />
                 </section>
+                <section>
+                  <Footer/>
+                </section>
               </>
             }
           />
 
+          <Route path="/thankyou" element={<ThankYouPage />}/>
+          <Route path="/gallery" element={<GaleryFullPage />} />   
+          <Route path="/product/:id" element={<GaleryCardPage />} />
           {/* Separate Calculator Route */}
           <Route path="/calculator" element={<Calculator />} />
         </Routes>

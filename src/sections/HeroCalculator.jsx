@@ -1,10 +1,6 @@
-
-import {calcScreen, calcScreen1, calcScreen2, arrowRight} from "../assets";
+import {arrowRight} from "../assets";
 import Button from '../components/Button';
 import {statistics} from '../constants';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules'; // Import Swiper modules
-import '../CustomSwiper.css';
 import InteractiveDot from "../components/InteractiveDot";
 import { useNavigate } from "react-router-dom";
 
@@ -68,26 +64,12 @@ const HeroCalculator = () => {
 
         <InteractiveDot key="3"
           info={(
-          <div className="object-cover w-full p-4">
-   <Swiper
-     spaceBetween={30}
-     pagination={{ clickable: true }}
-     navigation={true}
-     modules={[Pagination, Navigation]}
-     className="w-full h-full"
-   >
-     <SwiperSlide>
-       <img src={calcScreen} alt="Calculator Screenshot 1" className="h-full w-full object-fit" />
-     </SwiperSlide>
-     <SwiperSlide>
-       <img src={calcScreen1} alt="Calculator Screenshot 2" className="h-full w-full object-fit" />
-     </SwiperSlide>
-     <SwiperSlide>
-       <img src={calcScreen2} alt="Calculator Screenshot 3" className="h-full w-full object-fit" />
-     </SwiperSlide>
-   </Swiper>
-   </div>
-)}
+          <ul>
+          <li>saves time</li>
+          <li>saves money</li>
+          <li>amounts performance</li>
+        </ul>
+        )}
         />
   </div>
   );

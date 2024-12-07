@@ -36,11 +36,13 @@ const Timer = ({onTimeUpdate}) => {
   };
 
   return (
-    <div>
-      <h1>{minutes < 10 ? '0' + minutes : minutes} : {seconds < 10 ? '0' + seconds : seconds}</h1>
+    <div className=' bg-white border-2 flex flex-col justify-center items-center gap-2 p-5'>
+      <h1 className='uppercase text-2xl'>{minutes < 10 ? '0' + minutes : minutes} : {seconds < 10 ? '0' + seconds : seconds}</h1>
+      <div className='flex flex-row gap-4'>
       <button type="button" onClick={startTimer}>Start</button>
       <button type="button" onClick={restartTimer}>Restart</button>
       <button type="button" onClick={stopTimer}>Stop</button>
+      </div>
     </div>
   );
 };

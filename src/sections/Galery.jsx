@@ -1,56 +1,67 @@
 import React from 'react';
-import { galery } from '../constants/index';
-import ImageCard from '../components/ImageCard';
-import { Swiper, SwiperSlide } from 'swiper/react';  // Import Swiper and SwiperSlide
-import { Navigation, Pagination } from 'swiper/modules';  // Import required modules
-import '../CustomSwiper.css';  // Import Swiper styles
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import { galery } from '../constants';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import './swiper.css';
+
+import { useNavigate } from 'react-router-dom';
+import Button from '../components/Button';
+import { arrowRight } from '../assets/index';
 
 const Galery = () => {
-  return (
-    <div className="relative w-full flex flex-col justify-center items-center min-h-screen md:my-10 z-10">
-      
-      {/* Swiper Carousel */}
-      <Swiper
-        spaceBetween={20}  // Space between slides
-        slidesPerView={1}   // Default to 1 slide
-        navigation={true}   // Enable arrows for navigation
-        pagination={{ clickable: true }}  // Enable pagination (dots)
-        breakpoints={{
-          640: {
-            slidesPerView: 3,
-            spaceBetween: 20,
-          },
-          // 768: {
-          //   slidesPerView: 3,
-          //   spaceBetween: 30,
-          // },
-          // 1024: {
-          //   slidesPerView: 4,
-          //   spaceBetween: 40,
-          // }
-        }}
-        modules={[Navigation, Pagination]}  // Enable navigation and pagination modules
-        className="w-full h-3/4 flex flex-row md:flex-row items-center justify-center px-10 md:w-[90%] pb-6 md:mb-10 md:pb-3"  // Swiper width and height
-      >
-        {galery.map((item, index) => (
-          <SwiperSlide key={index}>
-            <ImageCard
-              imgUrl={item.imgUrl}
-              date={item.date}
-              title={item.title}
-              description={item.description}
-              className="mx-auto mb-4"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+  const navigate = useNavigate();
 
+  const handleButtonClick = () => {
+    navigate('/gallery');
+  };
+
+  return (
+    <div className='flex flex-col md:flex-row items-center justify-between md:h-screen p-10 md:mt-[5%] lg:mt-0 gap-8'>
+      <div className='flex flex-col items-center justify-center w-full md:w-[40%]'>
+        <h1 className='uppercase text-2xl mb-5'>Newly Added</h1>
+        <Button
+          className="z-20 bg-gray-800 bg-opacity-70 text-white border border-white rounded-md px-4 py-2 shadow-lg hover:bg-gray-600 transition duration-200"
+          label="Gallery"
+          iconURL={arrowRight}
+          onClick={handleButtonClick}
+        />
+      </div>
+
+      <div className='flex items-center justify-center w-full md:w-[50%] h-3/4'>
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={1} // Display 1 image at a time
+          spaceBetween={30} // Adjust space between slides
+          pagination={false}
+          autoplay={{
+            delay: 5000, // Auto-slide every 4 seconds
+            disableOnInteraction: false, // Keep autoplaying even if user interacts
+          }}
+          className='swiper swiper-h h-full w-full rounded-lg'
+        >
+          {galery.map((item, index) => (
+            <SwiperSlide key={index}>
+              {/* Image wrapper to contain the image fully */}
+              <div className='w-full h-full flex justify-center items-center'>
+                <img
+                  src={item.imgUrl}
+                  alt={`slide-${index}`}
+                  className="object-fit w-full h-auto rounded-lg" // Contain within max width and height
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 };
 
 export default Galery;
-
 
 
 // import React, {useState} from 'react';

@@ -1,49 +1,47 @@
-import { hamburger } from '../assets/index';
+import { useState } from 'react'; // Import useState to manage menu state
+import { HashLink } from 'react-router-hash-link';
+import { hamburger, closeIcon } from '../assets/index';
 import { navLinks } from '../constants/index';
-import { useNavigate, useLocation } from 'react-router-dom';
 
 const Nav = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false); // State to manage menu open/close
 
-  // Function to navigate to the home page and scroll to the section
-  const scrollToSection = (sectionId) => {
-    if (location.pathname !== '/') {
-      // If not on the homepage, navigate to homepage and scroll after navigating
-      navigate('/');
-      setTimeout(() => {
-        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-      }, 100); // Delay to ensure page navigation completes before scrolling
-    } else {
-      // If already on the homepage, just scroll to the section
-      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-    }
+  // Function to toggle the menu
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
-    <nav className="flex justify-between items-center gap-8 max-container">
-      <h1><a href="#home">fadenfroh</a></h1>
+    <nav className="relative flex justify-between items-center gap-8 max-container">
+      <h1>
+        <HashLink smooth to="/#home">fadenfroh</HashLink>
+      </h1>
 
+      {/* Desktop Menu */}
       <ul className="flex-1 flex justify-center items-center gap-16 max-lg:hidden">
         {navLinks.map((item) => (
           <li key={item.label}>
-            {/* Replace direct href links with an onClick to handle navigation and scrolling */}
-            <button
-              onClick={() => scrollToSection(item.href.replace('#', ''))} // Removes the # from href
+            <HashLink
+              smooth
+              to={`/#${item.href.replace('#', '')}`}
               className="font-bodoni leading-normal text-lg text-slate-gray"
             >
               {item.label}
-            </button>
+            </HashLink>
           </li>
         ))}
       </ul>
 
-      <div className="hidden max-lg:block">
+      {/* Mobile Menu Icon */}
+      <div className="hidden max-lg:block z-20">
+        {/* Conditionally render either the hamburger or the close icon based on the isOpen state */}
         <img
-          src={hamburger}
-          alt="HamburgerMenu"
+          src={isOpen ? closeIcon : hamburger} // Show the X icon if open, otherwise show the hamburger icon
+          alt={isOpen ? 'Close Menu' : 'Hamburger Menu'}
           width={25}
           height={25}
+          onClick={toggleMenu}
+          className="cursor-pointer"
         />
       </div>
 
@@ -56,6 +54,26 @@ const Nav = () => {
           etsy shop
         </a>
       </h1>
+
+      {/* Mobile Dropdown Menu */}
+      {isOpen && (
+        <div className="fixed top-0 left-0 w-full h-full bg-white flex flex-col justify-center items-center z-10">
+          <ul className="flex flex-col items-center gap-8">
+            {navLinks.map((item) => (
+              <li key={item.label}>
+                <HashLink
+                  smooth
+                  to={`/#${item.href.replace('#', '')}`}
+                  className="font-bodoni leading-normal text-lg text-slate-gray"
+                  onClick={toggleMenu} // Close menu on click
+                >
+                  {item.label}
+                </HashLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </nav>
   );
 };

@@ -5,6 +5,8 @@ import { useState, useRef } from 'react';
 import {Timer} from "./index.js";
 import html2canvas from "html2canvas";
 import jsPDF from 'jspdf';
+// import GaleryCardPage from '../sections/GaleryCardPage.jsx'
+
 
 
 const Calculator = () => {
@@ -114,7 +116,7 @@ const Calculator = () => {
 
   return (
     <div className='w-full flex flex-col justify-center items-center'>
-      <div className="mt-[8%] mb-[0.5%]" >
+      <div className="flex flex-col justify-center items-center gap-5 mt-[25%] md:mt-[15%] lg:mt-[10%] text-justify" >
         <label htmlFor="project_name">Project name: </label>
         <input
           id="project_name"
@@ -122,6 +124,7 @@ const Calculator = () => {
           placeholder="e.g. strawberry hat"
           value={projectName}
           onChange={(e) => setProjectName(e.target.value)}
+          className='border-2 p-2 hover:bg-slate-500'
         />
 
         <label htmlFor="project_date">Project date: </label>
@@ -130,6 +133,7 @@ const Calculator = () => {
           type="date"
           value={projectDate}
           onChange={(e) => setProjectDate(e.target.value)}
+          className='border-2 p-2'
         />
       </div>
 
@@ -332,6 +336,11 @@ onChange={(e) => setStitch(e.target.value)}
     <input id="gauge_length" type="number" placeholder="e.g. 10" value={gaugeLength} onChange={(e) => setGaugeLength(e.target.value)}/> cm/
     <input id="gauge_width" type="number" placeholder="e.g. 10" value={gaugeWidth} onChange={(e) => setGaugeWidth(e.target.value)}/>{' '}
     cm</label>
+
+    <div className='flex flex-col gap-4 items-center'>
+    <h1 htmlFor="time" className='uppercase self-start '>⏳Timer</h1>
+    <Timer className="items-center" onTimeUpdate={handleTimeUpdate}/>
+    </div>
     
     <label>Type in number of rows/length:</label> 
     <label><input 
@@ -371,9 +380,6 @@ onChange={(e) => setStitch(e.target.value)}
      <input type="radio" placeholder="tense"/>
      <input type="radio"/> 
     </div> */}
-
-     <h1 htmlFor="time" className='uppercase'>⏳Timer:</h1>
-          <Timer onTimeUpdate={handleTimeUpdate}/>
 
           <Button type="submit" label="calculate" iconURL={arrowRight}/>
         </div>
@@ -424,6 +430,8 @@ onChange={(e) => setStitch(e.target.value)}
           </div>
         )}
       </div>
+
+      {/* <GaleryCardPage/> */}
     </div>
   )
 }

@@ -5,7 +5,7 @@ const Button = ( {label, iconURL, onClick}) => {
     <div>
       <button type="submit"
       className="flex justify-center items-center
-      gap-2 px-7 py-4 font-montserrat text-lg leading-none
+      gap-2 px-7 py-4 font-montserrat text-lg leading-none bg-[#212121] bg-opacity-3
        text-white border-2 border-white"
        onClick={onClick}>
         {label}

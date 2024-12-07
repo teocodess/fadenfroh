@@ -1,0 +1,64 @@
+/* Custom styles for Swiper arrows */
+/* Swiper custom styles */
+
+.swiper-wrapper{
+    margin-bottom: 5%;
+}
+
+.swiper-container {
+  width: 100%;
+}
+
+ /* Extra small devices (phones, 600px and down) */
+ @media only screen and (max-width: 600px) {
+      
+ }
+
+ /* Small devices (portrait tablets and large phones, 600px and up) */
+ @media only screen and (min-width: 600px) {
+
+ }
+ 
+ /* Medium devices (landscape tablets, 768px and up) */
+ @media only screen and (min-width: 768px) {
+  
+ }
+ 
+ /* Large devices (laptops/desktops, 992px and up) */
+ @media only screen and (min-width: 992px) {
+
+ }
+ 
+ /* Extra large devices (large laptops and desktops, 1200px and up) */
+ @media only screen and (min-width: 1200px) {
+
+ } 
+
+
+.swiper-pagination-bullet {
+  background: #212121 !important;
+  margin-top: 30px !important;  /* Dot color */
+}
+
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #6d6d6d !important; /* Change this to your preferred color */
+  font-size: 8px !important;
+  padding: 20px !important; /* Adjust size if needed */
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #212121 !important; /* Optional: Color on hover */
+}
+
+/* You can also change the position of arrows if necessary */
+/* .swiper-button-prev {
+  left: -1px !important;
+}
+
+.swiper-button-next {
+  right: 20px !important;
+
+} */

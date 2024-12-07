@@ -1,19 +1,18 @@
+import React from 'react';
 
-const ImageCard = (props) => {
+const ImageCard = ({ imgUrl, date, title, description, onClick }) => {
   return (
-    <div className="relative w-[400px] h-[500px] max-w-xs
-    overflow-hidden rounded-2xl shadow-lg
-    group">
+    <div onClick={onClick} className="relative rounded-2xl group">
     <img
-        src = {props.imgUrl}
-        alt={props.title}
-        className= "w-full h-full object-cover transition-transform group-hover:scale-110 duration-200"/>
-    <div className="absolute inset-0 flex items-end
-    bg-gradient-to-t from-black/60 to-transparent">
+        src = {imgUrl}
+        alt={title}
+        className= "w-full h-full object-cover rounded-2xl transition-transform group-hover:scale-110 duration-200"/>
+      <div className="absolute inset-0 rounded-2xl flex items-end
+    bg-gradient-to-t from-black/40 to-transparent group">
     <div className='p-4 text-white'>
-        <p>{props.date}</p>
-        <h1>{props.title}</h1>
-        <p>{props.description}</p>
+        <p>{date}</p>
+        <h1>{title}</h1>
+        <p>{description}</p>
     </div>
     </div>
     
